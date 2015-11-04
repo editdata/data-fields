@@ -1,6 +1,6 @@
 {
   "name": "data-fields",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {},
@@ -21,10 +21,10 @@
   },
   "homepage": "https://github.com/editdata/data-fields#readme",
   "dependencies": {
-    "data-field-geojson": "^1.0.0",
-    "data-field-image": "^1.0.0",
-    "data-field-list": "^1.0.0",
-    "data-field-string": "^1.0.0",
-    "data-field-url": "^1.0.0"
+    "data-field-geojson": "^2.0.0",
+    "data-field-image": "^2.0.0",
+    "data-field-list": "^2.0.0",
+    "data-field-string": "^2.0.0",
+    "data-field-url": "^2.0.0"
   }
 }
