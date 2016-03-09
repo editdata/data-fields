@@ -8,6 +8,6 @@ module.exports = function createClassName (options) {
   if (options.editable) {
     className += ' data-field-editable data-field-editable-' + options.size
   }
-
+  if (options.className) className += ' ' + options.className
   return className
 }
