@@ -25,7 +25,6 @@ Create a virtual-dom geojson data-field for use with [data-ui](https://github.co
 module.exports = function createGeoJSONField (h, options, geojsonObject) {
   options = extend(defaultProps, options)
   options.dataType = 'geojson'
-  options.fieldType = options.display ? 'display' : 'input'
 
   var value = geojsonObject || options.value
   var map = createMap(value, options)
