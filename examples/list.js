@@ -1,35 +1,43 @@
 var vraf = require('virtual-raf')
 var h = require('virtual-dom/h')
-var createField = require('../index')
+var createField = require('../list')
 
 function inputField (state) {
-  var field = createField({
-    keys: state.keys
-  })
-
-  field.on('update', function (e, items) {
-    state.items = items
-    tree.update(state)
-  })
-
-  return field.render(h, { value: state.items })
+  var field = createField(h, state)
+  return field
 }
 
-function displayField (state) {
-  var field = createField({
+function staticField (state) {
+  var field = createField(h, {
+    items: state.items,
     keys: state.keys,
-    display: true
+    editable: false
   })
 
-  return field.render(h, { value: state.items })
+  return field
 }
 
 function render (state) {
   return h('div.fields', [
-    inputField(state),
-    displayField(state)
+    h('div.editable', [inputField(state)]),
+    h('div.static', [staticField(state)])
   ])
 }
 
-var tree = vraf({ items: ['hi', 'ok', 'awesome'], keys: true }, render, require('virtual-dom'))
-document.body.appendChild(tree())
+var state = {
+  items: ['hi', 'ok', 'awesome'],
+  keys: true
+}
+
+state.removeItem = function removeItem (e, items) {
+  state.items = items
+  tree.update(state)
+}
+
+state.onsubmit = function onsubmit (e, items, item) {
+  state.items = items
+  tree.update(state)
+}
+
+var tree = vraf(state, render, require('virtual-dom'))
+document.body.querySelector('#list').appendChild(tree.render())

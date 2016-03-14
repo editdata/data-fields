@@ -1,23 +1,23 @@
 var vraf = require('virtual-raf')
 var h = require('virtual-dom/h')
-var stringField = require('../string')
+var numberField = require('../number')
 
 function editableField (state) {
-  var field = stringField(h, {
-    value: state.message,
+  var field = numberField(h, {
+    value: state.value,
     oninput: oninput
   })
 
   function oninput (e) {
-    tree.update({ message: e.target.value })
+    tree.update({ value: e.target.value })
   }
 
   return field
 }
 
 function staticField (state) {
-  var field = stringField(h, {
-    value: state.message,
+  var field = numberField(h, {
+    value: state.value,
     editable: false
   })
 
@@ -31,5 +31,5 @@ function render (state) {
   ])
 }
 
-var tree = vraf({ message: 'hi' }, render, require('virtual-dom'))
-document.body.querySelector('#string').appendChild(tree.render())
+var tree = vraf({ value: 1000 }, render, require('virtual-dom'))
+document.body.querySelector('#number').appendChild(tree.render())

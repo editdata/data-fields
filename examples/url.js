@@ -1,6 +1,6 @@
 var vraf = require('virtual-raf')
 var h = require('virtual-dom/h')
-var createField = require('../index')
+var createField = require('../url')
 
 function editableField (state) {
   var field = createField(h, {
@@ -16,16 +16,15 @@ function editableField (state) {
 }
 
 function staticField (state) {
-  var field = createField({ editable: false })
-  return field
+  return createField(h, { editable: false }, state.url)
 }
 
 function render (state) {
   return h('div.fields', [
-    editableField(state),
-    staticField(state)
+    h('div.editable', [editableField(state)]),
+    h('div.static', [staticField(state)])
   ])
 }
 
 var tree = vraf({ url: 'example.com' }, render, require('virtual-dom'))
-document.body.appendChild(tree.render())
+document.body.querySelector('#url').appendChild(tree.render())

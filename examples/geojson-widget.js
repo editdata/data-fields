@@ -1,9 +1,11 @@
 var h = require('virtual-dom/h')
 var vraf = require('virtual-raf')
-var createMap = require('../map')
+var createMap = require('../utils/map')
 
 function render (state) {
+  console.log(state.geojson)
   return h('div.widget', createMap(state.geojson, {
+    editable: false,
     zoom: 12,
     setView: true,
     center: [47.621958, -122.33636],
@@ -12,6 +14,7 @@ function render (state) {
   }))
 
   function newPoint (e) {
+    console.log(e)
     state.geojson.features.push({
       type: 'Feature',
       geometry: {
@@ -28,5 +31,4 @@ var initialState = {
 }
 
 var tree = vraf(initialState, render, require('virtual-dom'))
-console.log(tree)
-document.body.appendChild(tree.render())
+document.body.querySelector('#geojson-widget').appendChild(tree.render())
