@@ -33,7 +33,7 @@ module.exports = function createListField (h, options, value) {
   options = extend(defaultProps, options)
   var keys = options.keys
   value = value || options.value
-  options.items = value
+  options.items = value || options.items
   options.dataType = 'list'
 
   if (isarray(value)) value = convert.toObject(value)
@@ -41,15 +41,15 @@ module.exports = function createListField (h, options, value) {
   var items = []
   if (!options.editable) {
     options.tagName = 'ul'
-    items = Object.keys(value).map(function (key) {
-      var item = value[key]
+    items = Object.keys(options.items).map(function (key) {
+      var item = options.items[key]
       var el = []
       if (keys) el.push(h('span.data-field-list-key', key + ': '))
       el.push(h('span.data-field-list-value', item))
       return h('li.data-field-list-item', el)
     })
   } else {
-    items = [listEditor({ items: value, keys: keys }, options)]
+    items = [listEditor(h, options)]
   }
 
   options.className = createClassName(options)

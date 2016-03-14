@@ -21,14 +21,14 @@ function MapWidget (state, options) {
   this.map = null
   this.features = null
   this.accessToken = options.accessToken
-  this.display = options.display || false
+  this.editable = options.editable || false
   this.tiles = options.tileLayer || L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' })
   this.onclick = options.onclick
   this.onedit = options.onedit
   this.ondraw = options.ondraw
   this.onupdate = options.onupdate
+  this.editable = options.editable
   delete options.tiles
-  delete options.display
   delete options.onclick
   this.options = options
 }
@@ -46,15 +46,14 @@ MapWidget.prototype.init = function () {
   this.features = L.geoJson(this.data)
   this.map.addLayer(this.features)
 
-  if (this.display) {
-    this.features.on('click', function (e) {
+  if (!this.editable) {
+    this.map.on('click', function (e) {
       if (self.onclick) self.onclick(e)
     })
   } else {
     var drawControl = new L.Control.Draw({
       edit: { featureGroup: this.features }
     })
-
     this.map.addControl(drawControl)
 
     this.map.on('draw:created', function (e) {
@@ -64,6 +63,7 @@ MapWidget.prototype.init = function () {
     })
 
     this.map.on('draw:edited', function (e) {
+      console.log('jere')
       if (self.options.onedit) self.options.onedit(e, self.features.toGeoJSON())
       if (self.options.onupdate) self.options.onupdate(e, self.features.toGeoJSON())
     })
