@@ -1,6 +1,6 @@
 {
   "name": "data-fields",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -35,7 +35,7 @@
     "data-field-classname": "^1.0.0",
     "leaflet": "^0.7.7",
     "leaflet-draw": "^0.2.4",
-    "list-editor": "editdata/list-editor",
+    "list-editor": "^1.0.2",
     "object-array-converter": "^1.0.0",
     "xtend": "^4.0.1"
   },
@@ -43,7 +43,7 @@
     "autoprefixer": "^6.3.3",
     "browserify": "^13.0.0",
     "budo": "^8.1.0",
-    "data-form": "github:editdata/data-form",
+    "data-form": "^1.1.1",
     "gh-pages": "^0.11.0",
     "postcss-cli": "^2.5.1",
     "standard": "^6.0.7",

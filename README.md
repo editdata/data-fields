@@ -1,5 +1,9 @@
 # data-fields
 
+Render fields for various types of input.
+
+[![npm](https://img.shields.io/npm/v/data-fields.svg)](http://npmjs.com/data-fields)
+
 ## Installation
 
 ```sh
