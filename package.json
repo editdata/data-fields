@@ -1,6 +1,6 @@
 {
   "name": "data-fields",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -35,7 +35,7 @@
     "data-field-classname": "^1.0.0",
     "leaflet": "^0.7.7",
     "leaflet-draw": "^0.2.4",
-    "list-editor": "^1.0.2",
+    "list-editor": "^2.0.0",
     "object-array-converter": "^1.0.0",
     "xtend": "^4.0.1"
   },

@@ -23,7 +23,6 @@ var defaultProps = {
 module.exports = function URLField (h, options, value) {
   options = extend(defaultProps, options)
   options.value = value || options.value
-  console.log('options.value', options.value)
   options.dataType = 'url'
   options.href = options.value ? addhttp(options.href || options.value) : null
   options.value = options.href

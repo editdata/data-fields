@@ -32,7 +32,7 @@ var defaultProps = {
 module.exports = function createListField (h, options, value) {
   options = extend(defaultProps, options)
   var keys = options.keys
-  value = value || options.value
+  value = value || options.value || []
   options.items = value || options.items
   options.dataType = 'list'
 
